@@ -3,6 +3,6 @@
 <%= simple_form_for @listing do |f| %>
   <%= f.input :title %>
   <%= f.input :description %>
-  <%= f.submit 'Create Listing' %>
+  <%= f.button :button, 'Create Listing', class: 'btn btn-primary' %>
 <% end %>
 
