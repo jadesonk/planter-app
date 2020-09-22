@@ -10,10 +10,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_102055) do
+ActiveRecord::Schema.define(version: 2020_09_22_041435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.text "answer_text"
+    t.bigint "question_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.bigint "listing_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["listing_id"], name: "index_conversations_on_listing_id"
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.date "expiry_date"
+    t.string "address"
+    t.integer "listing_type"
+    t.integer "status"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_listings_on_user_id"
+  end
+
+  create_table "listings_tags", id: false, force: :cascade do |t|
+    t.bigint "listing_id", null: false
+    t.bigint "tag_id", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "conversation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text "question_text"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +88,11 @@ ActiveRecord::Schema.define(version: 2020_09_21_102055) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
+  add_foreign_key "conversations", "listings"
+  add_foreign_key "listings", "users"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
+  add_foreign_key "questions", "users"
 end
