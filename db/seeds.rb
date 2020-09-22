@@ -15,6 +15,12 @@ puts "Destroy All Users"
 User.destroy_all
 
 puts "Create Users"
+
+User.create!(
+  email: 'jade@test.com',
+  password: '123123'
+)
+
 10.times do
   User.create!(
     email: Faker::Name.unique.first_name + '@test.com',
@@ -23,13 +29,16 @@ puts "Create Users"
 end
 
 puts "Create Listings for users"
-url = "https://plantswap.org/listings/"
+url = "https://plantswap.org/listings/page/4/"
 html_file = open(url).read
 html_doc = Nokogiri::HTML(html_file)
 
 html_doc.search('.geodir-category-list-view > li').each do |element|
   title = element.search('.geodir-entry-title a').text.strip
-  description = element.search('.geodir-field-post_content').text.strip
+  href_url = element.search('.geodir-field-post_content a').attribute('href').value
+  description_doc = Nokogiri::HTML(open(href_url).read)
+  description = description_doc.search('.geodir-field-post_content p').text.strip
+
   listing_attr = {
     title: title,
     description: description
