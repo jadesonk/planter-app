@@ -28,6 +28,18 @@ User.create!(
   )
 end
 
+tags = ['sun requirement', 'edible', 'beginner friendly', 'low maintenance', 'high maintenance']
+puts "Destroy All Tags"
+Tag.destroy_all
+
+puts
+puts "Creating listing tags"
+tags.each do |tag|
+  Tag.create!(name: tag)
+  puts "Created [#{tag}] Tag"
+end
+puts
+
 puts "Create Listings for users"
 url = "https://plantswap.org/listings/page/4/"
 html_file = open(url).read
@@ -42,12 +54,24 @@ html_doc.search('.geodir-category-list-view > li').each do |element|
   listing_attr = {
     title: title,
     description: description,
-    listing_type: (0..2).to_a.sample
+    listing_type: (0..2).to_a.sample,
+    status: 0
   }
 
   new_listing = Listing.new(listing_attr)
+  # add random tags
+  puts "randomizing tags for listings"
+  (0..3).to_a.sample.times do
+    random_tag = Tag.offset(rand(Tag.count)).first
+    unless new_listing.tags.include? random_tag
+      new_listing.tags << random_tag
+      puts "added #{random_tag} to listing - #{title}"
+    end
+  end
   # get a random user
+
   random_user = User.offset(rand(User.count)).first
+  puts "assigning [#{random_user.email}] to listing - #{title}"
   # assign user to new listing
   new_listing.user = random_user
   new_listing.save

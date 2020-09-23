@@ -24,6 +24,9 @@ class ListingsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listing).permit(:title, :description, :listing_type)
+    params.require(:listing).permit(:title, :description, :listing_type).tap do |whitelisted|
+      # whitelist tags and convert value to integer
+      whitelisted[:tag_ids] = params[:listing][:tag_ids].drop(1).map { |i| i.to_i }
+    end
   end
 end

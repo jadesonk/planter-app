@@ -8,9 +8,11 @@
         <%= f.input :description %>
         <%= f.input :listing_type,
           collection: Listing.listing_types.keys,
-          # input_html: { class: 'select2' },
+
           selected: 0,
+          mutiple: 'multiple',
           label: 'What type of listing are you looking to create?' %>
+        <%= f.association :tags, input_html: { class: 'select2' } %>
         <%= f.button :button, 'Create Listing', class: 'btn btn-primary' %>
       <% end %>
     </div>

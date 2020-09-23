@@ -1,6 +1,6 @@
 class Listing < ApplicationRecord
   belongs_to :user
-  has_many :tags, through: :listings_tags
+  has_and_belongs_to_many :tags
   has_many :conversations, dependent: :destroy
   has_many :messages, through: :conversations
 
