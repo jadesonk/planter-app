@@ -41,7 +41,8 @@ html_doc.search('.geodir-category-list-view > li').each do |element|
 
   listing_attr = {
     title: title,
-    description: description
+    description: description,
+    listing_type: (0..2).to_a.sample
   }
 
   new_listing = Listing.new(listing_attr)

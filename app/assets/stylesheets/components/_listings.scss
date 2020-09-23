@@ -16,7 +16,10 @@
   & img {
     width: 160px;
   }
-  & .listing-card-body {
-    padding: 1.25rem;
-  }
+}
+
+.listing-card-body {
+  padding: 1.25rem;
+  padding-right: 8rem;
+  width: 100%
 }
