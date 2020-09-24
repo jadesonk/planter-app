@@ -1,5 +1,5 @@
 class Tag < ApplicationRecord
-  has_many :listings, through: :listings_tags
+  has_and_belongs_to_many :listings
 
   validates :name, presence: true
 end

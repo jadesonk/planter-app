@@ -1,0 +1,25 @@
+        // <div class="listing-card">
+        //   <img class="" src="https://images.pexels.com/photos/970089/pexels-photo-970089.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=100" alt="Card image cap">
+        //   <div class="listing-card-body">
+        //     <h3 class="listing-card-title"><%= link_to listing.title, listing_path(listing) %></h3>
+        //     <p class="listing-card-text"><%= listing.description %></p>
+        //   </div>
+        // </div><!-- /.listing-card -->
+
+.listing-card {
+  position: relative;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 2px;
+  display: flex;
+  & img {
+    width: 160px;
+  }
+}
+
+.listing-card-body {
+  padding: 1.25rem;
+  padding-right: 8rem;
+  width: 100%
+}
