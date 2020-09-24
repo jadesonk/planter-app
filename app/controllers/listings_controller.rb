@@ -30,11 +30,11 @@ class ListingsController < ApplicationController
   private
 
   def set_listings
-    @listings = Listing.all
+    @listings = Listing.all.where('expiry_date >= ?', Date.today)
   end
 
   def listing_params
-    params.require(:listing).permit(:title, :description, :listing_type, photos: [], tag_ids: [])
+    params.require(:listing).permit(:title, :description, :listing_type, :expiry_date, photos: [], tag_ids: [])
   end
 
   def initiate_select
