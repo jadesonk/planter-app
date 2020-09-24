@@ -1,0 +1,15 @@
+<div class="listing-card">
+  <img class="" src="https://images.pexels.com/photos/970089/pexels-photo-970089.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=100" alt="Card image cap">
+  <div class="listing-card-body">
+    <h4 class="listing-card-title"><%= link_to listing.title, listing_path(listing) %></h4>
+    <p class="listing-card-text"><%= listing.description %></p>
+    <span class="listing-card-type"><%= listing.listing_type %></span>
+    <ul>
+      <% listing.tags.each do |tag| %>
+        <li>
+          <%= tag.name %>
+        </li>
+      <% end %>
+    </ul>
+  </div><!-- /.listing-card-body -->
+</div><!-- /.listing-card -->
