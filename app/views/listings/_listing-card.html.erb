@@ -1,13 +1,23 @@
 <div class="listing-card">
-  <img class="" src="https://images.pexels.com/photos/970089/pexels-photo-970089.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=100" alt="Card image cap">
+  <% if listing.photos.first.present? %>
+    <%= cl_image_tag listing.photos.first.key, height: 200, width: 200, crop: :fill %>
+  <% else %>
+    <img class="" src="https://images.pexels.com/photos/970089/pexels-photo-970089.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=100" alt="Card image cap">
+  <% end %>
   <div class="listing-card-body">
     <h4 class="listing-card-title"><%= link_to listing.title, listing_path(listing) %></h4>
     <p class="listing-card-text"><%= listing.description %></p>
     <span class="listing-card-type"><%= listing.listing_type %></span>
-    <ul>
+    <ul class="list-unstyled listing-card-tags d-flex align-items-center">
+      <h6><span class="badge badge-primary p-1 mr-2">tags: </span></h6>
+      <% unless listing.tags.present? %>
+        <li class="mr-1">
+          <h6><span class="badge badge-secondary p-1">no tags</span></h6>
+        </li>
+      <% end %>
       <% listing.tags.each do |tag| %>
-        <li>
-          <%= tag.name %>
+        <li class="mr-1">
+          <h6><span class="badge badge-success p-1"><%= tag.name %></span></h6>
         </li>
       <% end %>
     </ul>

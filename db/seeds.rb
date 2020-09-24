@@ -9,6 +9,8 @@ require 'faker'
 require 'open-uri'
 require 'nokogiri'
 
+require_relative 'seed_data'
+
 puts "START SEED"
 
 puts "Destroy All Users"
@@ -71,15 +73,23 @@ html_doc.search('.geodir-category-list-view > li').each do |element|
   end
 
   # scrape and upload imgs to cloudinary for each listing
+  # puts "Add images to listing"
+  # img_url = "https://www.gardeneur.com/?category=all&transaction_type=all&view=list"
+  # img_doc = Nokogiri::HTML(open(img_url).read)
+  # (0..5).to_a.sample.times do
+  #   random_img = img_doc.search('.home-list-image-container-desktop').to_a.sample
+  #   random_img_url = random_img.children.attribute("src").value
+  #   random_img_slug = random_img.attribute('href').value.match(/-(.*)/)[1]
+  #   random_img_file = URI.open(random_img_url)
+  #   new_listing.photos.attach(io: random_img_file, filename: "#{random_img_slug}.jpeg", content_type: 'image/jpeg')
+  # end
   puts "Add images to listing"
-  img_url = "https://www.gardeneur.com/?category=all&transaction_type=all&view=list"
-  img_doc = Nokogiri::HTML(open(img_url).read)
-  (0..5).to_a.sample.times do
-    random_img = img_doc.search('.home-list-image').to_a.sample
-    random_img_url = random_img.attributes["src"].value
-    random_img_slug = random_img.attributes["alt"].value.downcase.split.join("-")
+  photo_count = 0
+  (3..5).to_a.sample.times do
+    random_img_url = SeedData.get_img_thumbnails.sample
     random_img_file = URI.open(random_img_url)
-    new_listing.photos.attach(io: random_img_file, filename: "#{random_img_slug}.jpeg", content_type: 'image/jpeg')
+    new_listing.photos.attach(io: random_img_file, filename: "planter-image-thumbnail-#{photo_count}.jpeg", content_type: 'image/jpeg')
+    photo_count += 1
   end
 
   # get a random user
