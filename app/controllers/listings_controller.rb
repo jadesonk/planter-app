@@ -1,6 +1,11 @@
 class ListingsController < ApplicationController
   def index
     @listings = Listing.all
+    @tags = Tag.all
+    respond_to do |format|
+      format.html
+      format.json { render json: { listings: @listings } }
+    end
   end
 
   def show
