@@ -34,10 +34,7 @@ class ListingsController < ApplicationController
   end
 
   def listing_params
-    params.require(:listing).permit(:title, :description, :listing_type).tap do |whitelisted|
-      # whitelist tags and convert value to integer
-      whitelisted[:tag_ids] = params[:listing][:tag_ids].drop(1).map { |i| i.to_i }
-    end
+    params.require(:listing).permit(:title, :description, :listing_type, photos: [], tag_ids: [])
   end
 
   def initiate_select
