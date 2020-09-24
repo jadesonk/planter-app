@@ -2,28 +2,39 @@
 	<h1>This is plant show page</h1>
 		<div class="row border border-primary">
 			<ul>
-				<li>Common Name: <%= @plants["common_name"] %></li>
-				<li>Vegetables: <%= @plants["vegetable"] %></li>
-				<li>Edible parts: <%= @plants["edible_part"] %></li>
-				<li>Edible: <%= @plants["edible"] %></li>
-				<li>Toxicity: <%= @plants["specifications"]["toxicity"] %></li>
-				<li>Maximum height: <%= @plants["specifications"]["maximum_height"]["cm"] %>cm</li>
+				<li>Common Name: <%= @plants["common_name"].nil? ? "Information not available" : @plants["common_name"] %></li>
+				<li>Genus: <%= @plants["genus"].nil? ? "Information not available" : @plants["genus"] %></li>
+				<li>Vegetables: <%= @plants["vegetable"].nil? ? "Information not available" : @plants["vegetable"] %></li>
+				<li>Edible parts: <%= @plants["edible_part"].nil? ? "Information not available" : @plants["edible_part"] %></li>
+				<li>Edible: <%= @plants["edible"].nil? ? "Information not available" : @plants["edible"] %></li>
+				<li>Toxicity: <%= @plants["specifications"]["toxicity"].nil? ? "Information not available" : @plants["specifications"]["toxicity"] %></li>
+				<li>Maximum height (in cm): <%= @plants["specifications"]["maximum_height"]["cm"].nil? ? "Information not available" : @plants["specifications"]["maximum_height"]["cm"] %></li>
 			</ul>
 		</div>
 		<div class="row border border-warning">
-			<div class="col-3 d-flex">
-				<div class="slider">
-					<% @flowers.each_with_index do |flower, n| %>
-						<a href="#slide-<%= n %>"><%= n %></a>
-						<div class="slides">
-							<div id="slide-<%= n %>">
-								<img src="<%= flower["image_url"] %>" class="d-block w-100" alt="...">
+			<div class="column d-flex">
+				<!--Carousel -->
+				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carouselExampleIndicators" data-slide-to="" class="active"></li>
+					</ol>
+					<div class="carousel-inner">
+						<% @flowers.each_with_index do |flower, n| %>
+							<div class="carousel-item <%= "active" if n == 0  %> align-center">
+								<img src="<%= flower["image_url"] unless flower["image_url"] == nil %>" class="d-block w-100" alt="...">
 							</div>
-						</div>
-					<% end %>
+						<% end %>
+
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
 				</div>
-			
-			
 			</div>
 		</div>
 </div>
