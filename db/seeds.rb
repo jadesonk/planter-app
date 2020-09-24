@@ -1,8 +1,8 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
+
 # Examples:
-#
+
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
@@ -76,5 +76,27 @@ html_doc.search('.geodir-category-list-view > li').each do |element|
   new_listing.user = random_user
   new_listing.save
 end
+
+questions = [
+'What do plants give off during photosynthesis?',
+'What four things do all plants need?',
+'What are the parts of the plant?',
+'What does the root do for the plant?',
+'What does the stem do for the plant?',
+'What do leaves do for the plant?',
+'What is the first stage in the growth of many plants?',
+'What do both seeds and plants need to grow?',
+'The food making process for plants is called?',
+'Where do plants get their green color?',
+]
+questions.each do |question|
+random_user = User.offset(rand(User.count)).first
+new_question = Question.new(question_text:question)
+new_question.user = random_user
+new_question.save
+
+end
+
+
 
 puts "END SEED"
