@@ -1,11 +1,8 @@
 class ListingsController < ApplicationController
+  before_action :set_listings, only: [:index, :filter]
+
   def index
-    @listings = Listing.all
     @tags = Tag.all
-    respond_to do |format|
-      format.html
-      format.json { render json: { listings: @listings } }
-    end
   end
 
   def show
@@ -26,12 +23,27 @@ class ListingsController < ApplicationController
     end
   end
 
+  def filter
+    initiate_select
+  end
+
   private
+
+  def set_listings
+    @listings = Listing.all
+  end
 
   def listing_params
     params.require(:listing).permit(:title, :description, :listing_type).tap do |whitelisted|
       # whitelist tags and convert value to integer
       whitelisted[:tag_ids] = params[:listing][:tag_ids].drop(1).map { |i| i.to_i }
+    end
+  end
+
+  def initiate_select
+    tag = params[:select]
+    if tag.present?
+      @listings = Listing.filter_by_tag(tag)
     end
   end
 end

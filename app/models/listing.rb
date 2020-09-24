@@ -9,4 +9,8 @@ class Listing < ApplicationRecord
 
   enum listing_type: { swap: 0, want: 1, free: 2 }
   enum status: { open: 0, closed: 1 }
+
+  def self.filter_by_tag tag
+    Tag.find_by(name: tag).listings
+  end
 end
