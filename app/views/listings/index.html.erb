@@ -1,17 +1,26 @@
-<div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-10">
-      <h1>All listings</h1>
-    </div><!-- /.col-12 .col-lg-10 -->
-  </div><!-- /.row .justify-content-center -->
+<div class="container">
+  <div class="listings-banner">
+    <div class="listings-banner-content">
+      <h1>Swap plants and grow your collection!</h1>
+      <p>Not finding what youre looking for? Looking to trade your own plants?</p>
+      <%= link_to 'Create your own listing', new_listing_path, class: 'btn btn-primary' %>
+    </div>
+    <%= image_tag "https://res.cloudinary.com/dbwwrdzej/image/upload/v1600955273/planter/bottom-image-01_auzubi.jpg", alt: "alttext" %>
+  </div>
+</div>
+
+<div class="container container-right py-5 bg-pink">
   <div class="row justify-content-center" data-controller="listings">
-    <div class="col-12 col-lg-10">
-      <div class="listing-filter mb-4">
-        <%= render partial: 'tag_filter', locals: { tags: @tags } %>
-      </div><!-- /.listing-filter .mb-4 -->
+    <div class="col-12 col-lg-11 px-4">
+      <div class="listings-header-container mb-5 pb-3">
+        <h1 class="mb-0" data-target="listings.header">All listings</h1>
+        <div class="listings-filter">
+          <%= render partial: 'tag_filter', locals: { tags: @tags } %>
+        </div><!-- /.listing-filter .mb-4 -->
+      </div>
       <section class="listing-list-view">
         <%= render partial: 'listing_list_view', locals: { listings: @listings } %>
       </section><!-- /.listing-list-view -->
     </div><!-- /.col-12 .col-lg-10 -->
   </div><!-- /.row .justify-content-center-->
-</div><!-- /.container .py-5 -->
+</div>

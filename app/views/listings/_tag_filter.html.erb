@@ -5,6 +5,7 @@
   data-remote="true"
   method="post"
   action="<%= listings_filter_path %>"
+  class="ml-auto"
 >
 
   <label for="select">Filter listings by tags</label>
@@ -23,7 +24,7 @@
       data-action="change->listings#filter"
       data-target="listings.select"
       name="select"
-      class="form-control"
+      class="form-control shadow"
       selected=""
     >
       <option selected></option>

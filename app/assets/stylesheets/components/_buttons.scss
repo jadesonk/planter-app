@@ -1,9 +1,9 @@
 .btn-ghost {
-  color: #4A4A4A;
-  border: 1px solid #4A4A4A;
+  color: $my-green;
+  border: 2px solid $my-green;
   padding: 8px 24px;
   border-radius: 50px;
-  font-weight: lighter;
+  font-weight: light;
   opacity: 0.6;
   transition: opacity 0.3s ease;
   max-width: 160px;
@@ -11,6 +11,7 @@
 
 .btn-ghost:hover {
   opacity: 1;
+  color: $my-green;
 }
 
 .btn-flat {
