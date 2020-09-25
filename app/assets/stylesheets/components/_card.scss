@@ -1,10 +1,16 @@
+// plant-card image
 #plant-img {
 	min-height: 200px;
 	max-height: 200px;
 }
 
 #plant-card {
-	min-height: 450px;
-	max-height: 450px;
+	min-height: 400px;
 	border-radius: 3px;
+	box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+#plant-show-img {
+	max-height: 350px;
+
 }
