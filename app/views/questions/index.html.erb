@@ -1,10 +1,26 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTIAtihoqKyxS4gsZdQQARkPTidvdprXwkQww&usqp=CAU);">
+  <div class="container">
+    <h1><u>Planter</u> <strong> is for </strong> lovers and <strong> healthy people </strong>!</h1>
+    <p><i>Swap: </i> <i>Donate: </i> or <i> Want</i>.</p>
+    <a class="btn btn-flat" href="#">Plant now</a>
+  </div>
+</div>
+
+<a class="btn btn-ghost" href="#">Swap a plant</a>
+<a class="btn btn-flat" href="#">Donate a plant</a>
+<a class="btn btn-gradient" href="#">Want a plant now</a>
+
 <ul>
   <% @questions.each do |question| %>
   <li>
     <%= question[:question_text] %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://image.shutterstock.com/z/stock-photo-tropical-leaves-foliage-plant-bush-floral-arrangement-nature-backdrop-isolated-on-white-background-1059170384.jpg)">
+  Questions
+</div>
   </li>
-
-
-
-<% end %>
+  <% end %>
 </ul>
+
+<!-- <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+  Questions
+</div> -->

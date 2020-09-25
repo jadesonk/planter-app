@@ -23,6 +23,11 @@ User.create!(
   password: '123123'
 )
 
+User.create!(
+  email: 'aaron@test.com',
+  password: '123123'
+)
+
 10.times do
   User.create!(
     email: Faker::Name.unique.first_name + '@test.com',
