@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'pages#home'
+  root to: 'listings#index'
 
   post '/listings/filter', to: 'listings#filter', as: 'listings_filter'
   resources :listings, only: %i[index show new create]

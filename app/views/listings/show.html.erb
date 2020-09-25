@@ -1,11 +1,30 @@
-<div class="container">
+<div class="container py-5">
   <div class="row">
-    <div class="col-12">
-      <h1><%= @listing.title %></h1>
-      <p><%= @listing.description %></p>
-      <% @listing.photos.each do |photo| %>
-        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-      <% end %>
+    <div class="col-12 col-md-6">
+      <div class="post-content">
+        <h1><%= @listing.title %></h1>
+        <ul class="list-unstyled d-flex align-items-center mb-1">
+          <% if @listing.tags.present? %>
+            <h6><span class="badge badge-info p-1 mr-2 font-weight-normal">tags: </span></h6>
+          <% else %>
+            <h6><span class="badge badge-secondary p-1 mr-2 font-weight-normal">no tags</span></h6>
+          <% end %>
+          <% @listing.tags.each do |tag| %>
+            <li class="mr-1">
+              <h6><span class="badge badge-info p-1 font-weight-normal"><%= tag.name %></span></h6>
+            </li>
+          <% end %>
+        </ul>
+        <h5>Listing description:</h5>
+        <p><%= @listing.description %></p>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="image-container">
+        <% @listing.photos.each do |photo| %>
+            <%= cl_image_tag photo.key, height: 200, width: 200, crop: :fill %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
