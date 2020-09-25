@@ -3,6 +3,7 @@ class Listing < ApplicationRecord
   has_and_belongs_to_many :tags
   has_many :conversations, dependent: :destroy
   has_many :messages, through: :conversations
+  has_many_attached :photos
 
   validates :title, presence: true
   validates :description, presence: true

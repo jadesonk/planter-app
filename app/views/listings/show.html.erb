@@ -3,6 +3,9 @@
     <div class="col-12">
       <h1><%= @listing.title %></h1>
       <p><%= @listing.description %></p>
+      <% @listing.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+      <% end %>
     </div>
   </div>
 </div>
