@@ -10,9 +10,10 @@
   position: relative;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 1px solid $light-pink;
   border-radius: 2px;
   display: flex;
+  border-radius: 4px;
   & img {
     width: 160px;
   }
@@ -21,5 +22,91 @@
 .listing-card-body {
   padding: 1.25rem;
   padding-right: 8rem;
-  width: 100%
+  width: 100%;
+  padding-top: 2.5rem;
+  border-left: 0.75rem solid $my-yellow;
+}
+
+.listing-card-title {
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 4px;
+    border-radius: 2px;
+    bottom: -0.35rem;
+    background-color: $my-green;
+    transition: ease 0.3s;
+  }
+  &:hover {
+    &:before {
+      width: 150px;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    i.fas {
+      margin-left: 0.75rem;
+    }
+  }
+}
+
+.listing-card-title > a {
+  i.fas {
+    margin-left: 0.25rem;
+    transition: ease 0.3s;
+    vertical-align: baseline;
+    position: relative;
+    top: 2px;
+    color: $my-green;
+  }
+}
+
+.listing-card-tags {
+  position: absolute;
+  top: 0.5rem;
+  & > li {
+
+  }
+}
+
+.listing-card-type {
+  position: absolute;
+  top: 0.5rem;
+  padding: 0.25rem 1.5rem;
+  right: 0.5rem;
+  background-color: #FA7D89;
+  border-radius: 2px;
+  color: white;
+}
+
+.listings-banner {
+  display: flex;
+  overflow: hidden;
+  & img {
+    width: 500px;
+    margin-right: -7rem;
+  }
+}
+
+.listings-banner-content {
+  padding-top: 120px;
+}
+
+
+.listings-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.listings-header-container h1 {
+
+}
+
+.listings-filter form {
+  width: 230px;
 }

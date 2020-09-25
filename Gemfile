@@ -34,6 +34,9 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
 
+# Cloudinary for image upload and user assets
+gem 'cloudinary', '~> 1.16.0'
+
 # faker for seed data
 gem 'faker'
 

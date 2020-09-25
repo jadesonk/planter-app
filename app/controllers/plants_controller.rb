@@ -14,9 +14,9 @@ class PlantsController < ApplicationController
 		response = open(url).read
 		result = JSON.parse(response)
 		@plants = result["data"]
-		
+
 	end
-	
+
 	def show
 			slug = params[:slug]
 			species_url = "https://trefle.io/api/v1/species/#{slug}?token=#{get_api_key}"
@@ -27,7 +27,7 @@ class PlantsController < ApplicationController
 	end
 
 	private
-	
+
 	def	get_api_key
 		ENV['TREFLE_API_KEY']
 	end
