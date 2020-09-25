@@ -2,7 +2,7 @@ import { Controller } from "stimulus";
 import Rails from "@rails/ujs"
 
 export default class extends Controller {
-  static targets = ['form', 'query', 'select', 'display'];
+  static targets = ['form', 'query', 'select', 'display', 'header'];
 
   connect() {}
 
