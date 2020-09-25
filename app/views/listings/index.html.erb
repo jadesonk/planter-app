@@ -8,17 +8,9 @@
   <div class="row justify-content-center" data-controller="listings">
     <div class="col-12 col-lg-10">
       <div class="listing-filter mb-4">
-        <select class="form-control"
-          multiple="multiple"
-          data-target="listings.select"
-          data-action="change->listings#filter"
-        >
-          <% @tags.each do |tag| %>
-            <option><%= tag.name %></option>
-          <% end %>
-        </select>
+        <%= render partial: 'tag_filter', locals: { tags: @tags } %>
       </div><!-- /.listing-filter .mb-4 -->
-      <section class="listing-list-view" data-target="listings.display">
+      <section class="listing-list-view">
         <%= render partial: 'listing_list_view', locals: { listings: @listings } %>
       </section><!-- /.listing-list-view -->
     </div><!-- /.col-12 .col-lg-10 -->

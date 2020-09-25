@@ -1,14 +1,7 @@
-<ul class="listing-list-container list-unstyled">
+<ul class="listing-list-container list-unstyled" data-target="listings.display">
   <% listings.each do |listing| %>
     <li class="listing-list-item mb-3">
-      <div class="listing-card">
-        <img class="" src="https://images.pexels.com/photos/970089/pexels-photo-970089.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=100" alt="Card image cap">
-        <div class="listing-card-body">
-          <h4 class="listing-card-title"><%= link_to listing.title, listing_path(listing) %></h4>
-          <p class="listing-card-text"><%= listing.description %></p>
-          <span class="listing-card-type"><%= listing.listing_type %></span>
-        </div><!-- /.listing-card-body -->
-      </div><!-- /.listing-card -->
+      <%= render 'listing-card', listing: listing %>
     </li><!-- /.listing-list-item-->
   <% end %>
 </ul><!-- /.listing-list-container -->

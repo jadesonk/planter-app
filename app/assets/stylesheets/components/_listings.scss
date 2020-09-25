@@ -21,5 +21,14 @@
 .listing-card-body {
   padding: 1.25rem;
   padding-right: 8rem;
-  width: 100%
+  width: 100%;
+  padding-top: 2.5rem;
+}
+
+.listing-card-tags {
+  position: absolute;
+  top: 0.75rem;
+  & > li {
+
+  }
 }
