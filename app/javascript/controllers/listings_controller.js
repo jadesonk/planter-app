@@ -1,30 +1,29 @@
 import { Controller } from "stimulus";
+import Rails from "@rails/ujs"
 
 export default class extends Controller {
-  static targets = [ 'select' ];
+  static targets = ['form', 'query', 'select', 'display'];
 
-  connect() {
-    console.log('Hello!');
-    console.log('selectTarget', this.selectTarget);
+  connect() {}
+
+  search(e) {
+    const query = this.queryTarget.value
+    Rails.fire(this.formTarget, 'submit')
   }
 
   filter(e) {
-    const value = this.selectTarget.value
-
-
-
-    // fetch('/listings', {
-    //   headers: { accept: "application/json" }
-    // })
-    //   .then(response => response.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
+    const select = this.selectTarget.value
+    Rails.fire(this.formTarget, 'submit')
   }
 
-  result(e) {}
+  result(e) {
+    const data = e.detail[0].body.querySelector('.listing-list-container').innerHTML
+    if (data.length > 0) {
+      return this.displayTarget.innerHTML = data
+    }
+  }
 
   error(e) {
-    console.log(e);
+    console.log('error::', e);
   }
 }

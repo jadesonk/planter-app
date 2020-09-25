@@ -1,0 +1,36 @@
+<form
+  data-action="ajax:success->listings#result"
+  data-action="ajax:error->listings#error"
+  data-target="listings.form"
+  data-remote="true"
+  method="post"
+  action="<%= listings_filter_path %>"
+>
+
+  <label for="select">Filter by tags</label>
+<!--   <section>
+    <input
+      data-action="keyup->listings#search"
+      data-target="listings.query"
+      type="text"
+      name="query"
+      value=""
+      placeholder="Search" />
+  </section> -->
+
+  <section>
+    <select
+      data-action="change->listings#filter"
+      data-target="listings.select"
+      name="select"
+      class="form-control"
+      selected=""
+    >
+      <option selected></option>
+      <% tags.each do |tag| %>
+        <option><%= tag.name %></option>
+      <% end %>
+    </select>
+  </section>
+
+</form>
