@@ -1,33 +1,47 @@
-<div class="container text-center">
-	<h1>Search for a plant</h1>
-	<%= form_tag plants_path, method: :get do %>
-	<%= text_field_tag :query,
-		params[:query],
-		class: "form-control",
-		placeholder: "Enter plant name"
-	%>
-	<%= submit_tag "Search", class: "btn btn-primary" %>
-	<% end %>
+<!-- Search box -->
 
-
-	<div class="row pt-5">
-		<% if params[:query].present? %>
-			<% @plants.each do |plant| %>
-				<div class="col-3">
-					<div class="d-flex justify-content between mt-2">
-
-						<div class="card" id="plant-card">
-							<img src="<%= plant["image_url"] %>" id="plant-img" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title"><%= plant["common_name"] %></h5>
-								<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-								<%= link_to "Find out more", plant_path(slug: plant["slug"]) %>
-							</div>
-						</div>			
-					</div>
-				</div>
+<div class="container mt-3">
+	<div class="card-search">
+		<div class="card-search-infos">
+			<div class="col">
+				<h2>Search for plants</h2>
+				<p>Your guide to the gardens of the world</p>
+			</div>
+		</div>
+		<div class="container search-form-control">
+			<%= form_tag plants_path, method: :get do %>
+			<%= text_field_tag :query,
+			params[:query],
+			class: "form-control",
+			placeholder: "Enter plant name"
+			%>
+			<%= submit_tag "Search", class: "btn btn-primary" %>
 			<% end %>
-		<% end %>
+		</div>
+	</div>
+</div>
+
+<!-- Results display cards -->
+<div class="container mt-5">
+	<div class="card-search">
+		<div class="row">
+			<% @plants.each do |plant| %>
+				<% unless plant["image_url"] == nil %>
+					<div class="col-sm-12 col-lg-4">
+						<div class="d-flex justify-content between mt-2">
+							<div class="card" id="plant-card">
+								<img src="<%= plant["image_url"] %>" id="plant-img" class="card-img-top" alt="...">
+								<div class="card-body">
+									<h5 class="card-title"><%= plant["common_name"] %></h5>
+									<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+									<%= link_to "Find out more", plant_path(slug: plant["slug"]) %>
+								</div>
+							</div>			
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
 	</div>
 </div>
 
