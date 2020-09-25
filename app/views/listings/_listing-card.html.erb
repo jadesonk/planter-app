@@ -9,11 +9,10 @@
     <p class="listing-card-text"><%= listing.description %></p>
     <span class="listing-card-type"><%= listing.listing_type %></span>
     <ul class="list-unstyled listing-card-tags d-flex align-items-center">
-      <h6><span class="badge badge-primary p-1 mr-2">tags: </span></h6>
-      <% unless listing.tags.present? %>
-        <li class="mr-1">
-          <h6><span class="badge badge-secondary p-1">no tags</span></h6>
-        </li>
+      <% if listing.tags.present? %>
+        <h6><span class="badge badge-primary p-1 mr-2">tags: </span></h6>
+      <% else %>
+        <h6><span class="badge badge-secondary p-1 mr-2">no tags</span></h6>
       <% end %>
       <% listing.tags.each do |tag| %>
         <li class="mr-1">
