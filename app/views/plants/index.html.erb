@@ -1,27 +1,37 @@
 <!-- Search box -->
 
 <div class="container mt-3">
-	<div class="card-search">
-		<div class="card-search-infos">
-			<div class="col">
-				<h2>Search for plants</h2>
-				<p>Your guide to the gardens of the world</p>
+	<div class="row">
+		<div class="card-search">
+			<div class="card-search-infos">
+				<div class="col-12 col-lg-6">
+					<h2>Search for plants</h2>
+					<p>Your guide to the gardens of the world</p>
+				</div>
 			</div>
-		</div>
-		<div class="container search-form-control">
-			<%= form_tag plants_path, method: :get do %>
-			<%= text_field_tag :query,
-			params[:query],
-			class: "form-control",
-			placeholder: "Enter plant name"
-			%>
-			<%= submit_tag "Search", class: "btn btn-primary" %>
-			<% end %>
+			<div class="container search-form-control">
+				<%= form_tag plants_path, method: :get do %>
+				<%= text_field_tag :query,
+				params[:query],
+				class: "form-control",
+				placeholder: "Enter plant name"
+				%>
+				<%= submit_tag "Search", class: "btn btn-primary" %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>
 
+<%= link_to "create plant", new_plant_path %>
+
+
+
 <!-- Results display cards -->
+<div class="container mt-5">
+	<div class="row">
+	</div>
+</div>
 <div class="container mt-5">
 	<div class="card-search">
 		<div class="row">
@@ -34,7 +44,7 @@
 								<div class="card-body">
 									<h5 class="card-title"><%= plant["common_name"] %></h5>
 									<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-									<%= link_to "Find out more", plant_path(slug: plant["slug"]) %>
+									<%= link_to "Find out more", slug_plant_path(slug: plant["slug"]) %>
 								</div>
 							</div>			
 						</div>
@@ -44,5 +54,3 @@
 		</div>
 	</div>
 </div>
-
-

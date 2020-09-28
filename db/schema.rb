@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_24_091522) do
+ActiveRecord::Schema.define(version: 2020_09_28_084535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2020_09_24_091522) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "plant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plant_id"], name: "index_collections_on_plant_id"
+    t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -83,6 +92,17 @@ ActiveRecord::Schema.define(version: 2020_09_24_091522) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "plants", force: :cascade do |t|
+    t.string "common_name"
+    t.string "sun"
+    t.string "water"
+    t.integer "max_height"
+    t.string "duration_to_harvest"
+    t.boolean "trellis_support"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text "question_text"
     t.bigint "user_id", null: false
@@ -112,6 +132,7 @@ ActiveRecord::Schema.define(version: 2020_09_24_091522) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "collections", "plants"
   add_foreign_key "conversations", "listings"
   add_foreign_key "listings", "users"
   add_foreign_key "messages", "conversations"

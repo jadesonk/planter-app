@@ -1,44 +1,7 @@
-<div class="container mt-4">
-	<div class="row">
-		<div class="col">
-			<ul class="list-group">
-				<li class="list-group-item active"><strong>Common Name: <%= @plants["common_name"] %></strong></li>
-				<li class="list-group-item">Genus: <%= @plants["genus"].nil? ? "Information not available" : @plants["genus"] %></li>
-				<li class="list-group-item">Vegetables: <%= @plants["vegetable"].nil? ? "Information not available" : @plants["vegetable"] %></li>
-				<li class="list-group-item">Edible parts: <%= @plants["edible_part"].nil? ? "Information not available" : @plants["edible_part"] %></li>
-				<li class="list-group-item">Toxicity: <%= @plants["specifications"]["toxicity"].nil? ? "Information not available" : @plants["specifications"]["toxicity"] %></li>
-				<li class="list-group-item">Maximum height (in cm): <%= @plants["specifications"]["maximum_height"]["cm"].nil? ? "Information not available" : @plants["specifications"]["maximum_height"]["cm"] %></li>
-			</ul>
-		</div>
-		<div class="col">
-			<p>Calendula (Calendula officinalis) is a short-lived perennial in warmer climates, but it is usually grown as an annual flower in garden beds and containers. Although commonly known as pot marigold, calendula is different from the common marigold (Tagetes spp.). It is, however, part of the same Asteracea family, along with daisies and chrysanthemums, with whom it shared the same daisy-like flower appearance.
-			The common name of pot marigold derives because the gold flowers that bloomed during the festivals of the Virgin Mary in Renaissance times (mary + gold = marigold) were often used in cooking. Today, gardeners simply grow these plants for their cheery flowers and profuse blooming habit. Though they most commonly are seen in varieties with yellow and orange flowers, there are also more subtle shades of pink and cream available. Calendula is commonly used in annual flower beds and container gardening.</p>
-		</div>
-	</div>
-	
+<div class="container">
+    <h1>How to care for <%= @plant.common_name %></h1>
+		<h2>contributed by: <%= @collection.user.email %></h2>
+    <p><%= @plant.sun %></p>
+    <p><%= @plant.water %></p>
 
-<!-- Pictures -->
-	<div class="row">
-		<% @flowers.each_with_index do |flower, n| %>
-		<div class="col">
-			<div class="d-flex justify-content-around mt-2">
-				<div class="card">
-				<img src="<%= flower["image_url"] unless flower["image_url"] == nil %>" id="plant-show-img" class="rounded mx-auto d-block" alt="...">
-				</div>
-			</div>
-		</div>	
-	<% end %>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-

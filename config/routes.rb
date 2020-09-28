@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/listings/filter', to: 'listings#filter', as: 'listings_filter'
   resources :listings, only: %i[index show new create]
 
-  resources :plants, only: [:index]
-  get "/plants/:slug", to: "plants#show", as: "plant"
+  resources :plants, only: [:index, :new, :create, :show]
+  get "/plants/:slug", to: "plants#slug_show", as: "slug_plant"
+
 end

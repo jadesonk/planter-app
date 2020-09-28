@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :messages
   has_many :questions
   has_many :answers, through: :questions
+  has_many :plants, through: :collections
 end
