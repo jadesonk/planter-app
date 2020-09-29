@@ -15,6 +15,8 @@ class PlantsController < ApplicationController
 		result = JSON.parse(response)
 		@plants = result["data"]
 
+		# display collections on index page
+		@collections = Collection.all
 	end
 
 	def slug_show
@@ -32,7 +34,6 @@ class PlantsController < ApplicationController
 	
 	def create
 		@plant = Plant.new(plant_params)
-		# why is @collection returning nil?
 		@collection = Collection.find_or_create_by(user_id: current_user.id)
 		@collection.plant = @plant
 		@plant.save
