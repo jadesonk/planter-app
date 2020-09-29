@@ -2,11 +2,13 @@
 <div class="container mt-5 mb-5">
   <%= simple_form_for [ @plant ] do |f| %>
   <%= f.input :common_name %>
+  <%= f.input :description, hint: "Please share your gardening tips" %>
 	<%= f.input :sun, collection: ["Full sun", "Filtered sunlight", "Low light"] %>
 	<%= f.input :water %>
   <%= f.input :max_height, hint: "Please enter height in cm" %>
   <%= f.input :duration_to_harvest, hint: "Please enter est no. of weeks to harvest" %>
   <%= f.input :trellis_support %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit "Submit Plant", class: "btn btn-primary" %>
   <% end %>
 </div>
