@@ -1,0 +1,13 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+      <h1>Create a new answer!</h1>
+
+      <%= simple_form_for [@question,@answer] do |f| %>
+        <%= f.input :answer_text %>
+        <%= f.button :button, 'Submit answer', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
