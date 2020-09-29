@@ -7,6 +7,7 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
+    @message = Message.new
   end
 
   def new

@@ -97,6 +97,7 @@ html_doc.search('.geodir-category-list-view > li').each do |element|
   puts "assigning [#{random_user.email}] to listing - #{title}"
   # assign user to new listing
   new_listing.user = random_user
+
   new_listing.save
 end
 
