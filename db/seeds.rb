@@ -58,7 +58,7 @@ html_doc.search('.geodir-category-list-view > li').each do |element|
     description: description,
     listing_type: (0..2).to_a.sample,
     status: 0,
-    expiry_date: Date.today - 10 + (8..45).to_a.sample
+    expiry_date: Date.today + (8..45).to_a.sample
   }
 
   new_listing = Listing.new(listing_attr)
