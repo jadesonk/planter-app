@@ -1,0 +1,21 @@
+<p>These are stories submitted by user</p>
+
+<div class="container mb-5">
+	<% @plant_id_array.each do |plant| %>
+		<% @plant = Plant.find(plant) %>
+			<div class="row">
+				<div class="list-group">
+				
+					<a href="/plants/<%= plant %>" class="list-group-item list-group-item-action">
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1"><%= @plant[:common_name] %></h5>
+							<small><%= @plant[:created_at] %></small>
+						</div>
+						<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+						<small>Donec id elit non mi porta.</small>
+					</a>
+				</div>
+			</div>
+	<% end %>
+</div>
+

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
-  resources :plants, only: [:index]
-  get "/plants/:slug", to: "plants#show", as: "plant"
+  resources :plants, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  get "/search", to: "plants#slug_index"
+  get "/search/:slug", to: "plants#slug_show", as: "slug_plant"
+  get "/stories", to: "plants#collection"
 end
