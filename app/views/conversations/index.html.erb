@@ -1,0 +1,48 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <h2>My listing's conversations</h2>
+      <% @receiving_conversations.each do |conversation| %>
+        conversation for: <%= link_to conversation.listing.title, conversation_path(conversation) %>
+
+        <%# conversation.messages.each do |message| %>
+          <p><%#= message.content %></p>
+        <%# end %>
+      <% end %>
+    </div>
+    <div class="col-12 col-md-6">
+      <h2>My interested listing's conversations </h2>
+      <% @sending_conversations.each do |conversation| %>
+        conversation for: <%= link_to conversation.listing.title, conversation_path(conversation) %>
+
+        <%# conversation.messages.each do |message| %>
+          <p><%#= message.content %></p>
+        <%# end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container-fluid px-0">
+  <div class="row bg-pink" data-controller="conversations">
+    <div class="col-12 col-md-4">
+      <ul class="list-unstyled mb-0">
+        <% @all_conversations.each do |conversation| %>
+          <li>
+            <a href="#" class="notification" data-target="conversations.">
+              <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+              <div class="notification-content">
+                <p><small>14th January</small></p>
+                <p><%= conversation.listing.title %></p>
+              </div>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-12 col-md-8">
+
+
+    </div>
+  </div>
+</div>
+
