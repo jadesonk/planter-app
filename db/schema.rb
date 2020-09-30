@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 2020_09_29_071000) do
     t.bigint "listing_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "initiating_user_id", null: false
+    t.index ["initiating_user_id"], name: "index_conversations_on_initiating_user_id"
     t.index ["listing_id"], name: "index_conversations_on_listing_id"
   end
 
@@ -135,6 +137,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_071000) do
   add_foreign_key "answers", "users"
   add_foreign_key "collections", "plants"
   add_foreign_key "conversations", "listings"
+  add_foreign_key "conversations", "users", column: "initiating_user_id"
   add_foreign_key "listings", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
