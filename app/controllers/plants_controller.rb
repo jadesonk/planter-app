@@ -51,9 +51,30 @@ class PlantsController < ApplicationController
 
 	def show
 		@plant = Plant.find(params[:id])
-		@collection = Collection.find_or_create_by(user_id: current_user.id)
+
+		#show user who contributed to the plant
+		# @collections = Collection.all
+		# @collections.each do |collection|
+		# 	collection.plant_id = @plant
+		# 	@user_id = collection.user_id
+		# end
+	end
+
+	def edit
+		@plant = Plant.find(params[:id])
 	end
 	
+	def	update
+		@plant = Plant.find(params[:id])
+		@plant.update(plant_params)
+		redirect_to plant_path(@plant)
+	end
+
+	def destroy
+		@plant = Plant.find(params[:id])
+		@plant.destroy
+		redirect_to stories_path
+	end
 
 	def collection
 		@collections = Collection.where(user_id: current_user.id)

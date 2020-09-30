@@ -1,7 +1,8 @@
 <div class="container">
-    <h1>How to care for <%= @plant.common_name %></h1>
-		<h2>contributed by: <%= @collection.user.email %></h2>
-    <p><%= @plant.sun %></p>
-    <p><%= @plant.water %></p>
+  <h1><%= @plant.common_name %></h1>
+  <p><%= @plant.sun %></p>
+  <p><%= @plant.water %></p>
+<%= link_to "Edit", edit_plant_path(@plant) %> |
+<%= link_to "Remove Story", plant_path(@plant), method: :delete, data: { confirm: "Confirm delete story?"} %>
 
 </div>

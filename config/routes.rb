@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post '/listings/filter', to: 'listings#filter', as: 'listings_filter'
   resources :listings, only: %i[index show new create]
 
-  resources :plants, only: [:index, :new, :create, :show]
+  resources :plants, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   get "/search", to: "plants#slug_index"
   get "/search/:slug", to: "plants#slug_show", as: "slug_plant"
   get "/stories", to: "plants#collection"
