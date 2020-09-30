@@ -22,13 +22,16 @@
     </div>
   </div>
 </div>
-<div class="container-fluid px-0">
+<div class="container-fluid">
   <div class="row bg-pink" data-controller="conversations">
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-4 px-0">
       <ul class="list-unstyled mb-0">
         <% @all_conversations.each do |conversation| %>
           <li>
-            <a href="#" class="notification" data-target="conversations.">
+            <a href="<%= conversation_path(conversation) %>"
+              class="notification"
+              data-action="click->conversations#select"
+            >
               <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
               <div class="notification-content">
                 <p><small>14th January</small></p>
@@ -40,8 +43,40 @@
       </ul>
     </div>
     <div class="col-12 col-md-8">
-
-
+<!--       <div class="conversation-header">
+        <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+        <div class="conversation-header-content">
+          <p><small>14th January</small></p>
+          <p><%#= conversation.listing.title %></p>
+        </div>
+      </div> -->
+      <ul class="list-unstyled messages-container" data-target="conversations.display">
+      </ul>
+      <div>
+        <form
+          data-action="ajax:success->conversations#result"
+          data-action="ajax:error->conversations#error"
+          data-target="conversations.form"
+          data-remote="true"
+          method="post"
+          action=""
+        >
+          <input
+            data-target="conversations.message"
+            type="text"
+            name="message"
+            value=""
+          />
+          <button
+            data-action="submit->conversations#submit"
+            name="button"
+            type="submit"
+            class="btn btn-primary"
+          >
+            Send
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

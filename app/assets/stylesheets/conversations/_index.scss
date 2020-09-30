@@ -42,3 +42,26 @@
 .notification .notification-actions a:hover {
   color: #555555;
 }
+
+.messages-container {
+  padding: 1rem;
+}
+
+.message-content {
+  display: flex;
+  & p {
+    background: lightgray;
+    padding: 0.25rem;
+    border-radius: 2px;
+    margin-bottom: 0;
+  }
+}
+
+.message-sender {
+  justify-content: flex-end;
+  & p {
+    background-color: $my-green;
+  }
+}
+
+.message-receiver {}
