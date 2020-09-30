@@ -8,15 +8,21 @@ class ListingsController < ApplicationController
   def show
     @listing = Listing.find(params[:id])
     @message = Message.new
+    authorize @listing
+
+    # set variable to determine if listing owner
+    @i_am_listing_owner = @listing.user == current_user
   end
 
   def new
     @listing = Listing.new
+    authorize @listing
   end
 
   def create
     @listing = Listing.new(listing_params)
     @listing.user = current_user
+    authorize @listing
     if @listing.save
       redirect_to @listing
     else
@@ -31,7 +37,8 @@ class ListingsController < ApplicationController
   private
 
   def set_listings
-    @listings = Listing.all.where('expiry_date >= ?', Date.today)
+    # policy_scope breaking filter
+    @listings = policy_scope(Listing).where('expiry_date >= ?', Date.today)
   end
 
   def listing_params
@@ -42,6 +49,7 @@ class ListingsController < ApplicationController
     tag = params[:select]
     if tag.present?
       @listings = Listing.filter_by_tag(tag)
+      authorize @listings
     end
   end
 end
