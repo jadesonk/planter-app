@@ -2,11 +2,12 @@ require 'open-uri'
 
 class PlantsController < ApplicationController
 	before_action :index, only: [:show, :create]
+  skip_after_action :verify_authorized, only: [:collection, :slug_index, :slug_show]
 
 	def index
 		# display collections on index page
 		@collections = Collection.all
-		@plants = Plant.all
+		@plants = policy_scope(Plant)
 	end
 
 	def slug_index
@@ -33,13 +34,14 @@ class PlantsController < ApplicationController
 
 	def new
 		@plant = Plant.new
+    authorize @plant
 	end
-	
+
 	def create
 		@plant = Plant.new(plant_params)
 		@collection = Collection.find_or_create_by(user_id: current_user.id)
 		@collection.plant = @plant
-		@plant.save
+    authorize @plant
 		if @plant.save
 			@new_collection = Collection.create!(user_id: current_user.id, plant_id: @plant.id)
 			redirect_to plant_path(@plant)
@@ -50,6 +52,7 @@ class PlantsController < ApplicationController
 
 	def show
 		@plant = Plant.find(params[:id])
+    authorize @plant
 
 		#show user who contributed to the plant
 		# @collections = Collection.all
@@ -61,23 +64,26 @@ class PlantsController < ApplicationController
 
 	def edit
 		@plant = Plant.find(params[:id])
+    authorize @plant
 	end
-	
+
 	def	update
 		@plant = Plant.find(params[:id])
+    authorize @plant
 		@plant.update(plant_params)
 		redirect_to plant_path(@plant)
 	end
 
 	def destroy
 		@plant = Plant.find(params[:id])
+    authorize @plant
 		@plant.destroy
 		redirect_to stories_path
 	end
 
 	def collection
 		@collections = Collection.where(user_id: current_user.id)
-		
+
 		@plant_id_array = []
 		@collections.each do |collection|
 			@plant_id_array << collection[:plant_id]
@@ -91,8 +97,6 @@ class PlantsController < ApplicationController
 	def plant_params
 		params.require(:plant).permit(:common_name, :description, :sun, :water, :max_height, :duration_to_harvest, :trellis_support, photos: [])
 	end
-
-	private
 
 	def	get_api_key
 		ENV['TREFLE_API_KEY']

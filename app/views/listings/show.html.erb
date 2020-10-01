@@ -27,5 +27,16 @@
       </div>
     </div>
   </div>
+  <% unless @i_am_listing_owner %>
+    <div class="row">
+      <div class="col-12">
+        <h3>Message listing owner</h3>
+        <%= simple_form_for [@listing, @message] do |f| %>
+          <%= f.input :content %>
+          <%= f.button :button, 'Send message', class: 'btn btn-primary btn-block' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
 
