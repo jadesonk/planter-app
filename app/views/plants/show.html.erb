@@ -1,8 +1,25 @@
-<div class="container">
-  <h1><%= @plant.common_name %></h1>
-  <p><%= @plant.sun %></p>
-  <p><%= @plant.water %></p>
-<%= link_to "Edit", edit_plant_path(@plant) %> |
-<%= link_to "Remove Story", plant_path(@plant), method: :delete, data: { confirm: "Confirm delete story?"} %>
-
+<div class="container mb-5 mt-5">
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron bg-pink">
+        <% if @plant.photos.first.present? %>
+          <%= cl_image_tag @plant.photos.first.key, height: 200, width: 200, crop: :fill %>
+        <% end %>
+      <h1 class="display-4"><%= @plant.common_name %></h1>
+      <p class="lead"><%= @plant.description %></p>
+      </div>
+      <br>
+    </div>
+    <div class="col">
+      <p>Recommended sun exposure : <%= @plant.sun %></p>
+      <p>Recommended water level : <%= @plant.water %></p>
+      <p>Max height : <%= @plant.max_height %></p>
+      <p>Time needed to harvest : <%= @plant.duration_to_harvest %></p>
+      <p>Require trelis support? : <%= @plant.trellis_support %></p>
+      <br>
+      <%= link_to "Edit", edit_plant_path(@plant) %> |
+      <%= link_to "Remove", plant_path(@plant), method: :delete, data: { confirm: "Confirm delete story?"} %>
+    
+    </div>
+  </div>
 </div>

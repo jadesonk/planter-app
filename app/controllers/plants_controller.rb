@@ -7,8 +7,7 @@ class PlantsController < ApplicationController
 	def index
 		# display collections on index page
 		@collections = Collection.all
-		@plant = policy_scope(Plant)
-
+		@plants = policy_scope(Plant)
 	end
 
 	def slug_index
