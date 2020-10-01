@@ -1,22 +1,24 @@
 Rails.application.routes.draw do
+  get 'conversations/index'
   devise_for :users
   root to: 'listings#index'
 
   post '/listings/filter', to: 'listings#filter', as: 'listings_filter'
-  resources :listings, only: %i[index show new create]
-
-  resources :plants, only: [:index]
-  get "/plants/:slug", to: "plants#show", as: "plant"
-
-
-  # get "/questions", to: "questions#index", as: "questions"
-  # get "questions/new", to: "questions#new", as: "new_question"
-  # post "/questions", to: "questions#create"
-  # get "questions/:id", to: "questions#show", as: "question"
-  # get "questions/:id/answers/new", to: "answers#new", as: "new_answer"
+  resources :listings, only: %i[index show new create] do
+    resources :messages, only: [:create]
+  end
 
   resources :questions, only: %i[index show new create] do
     resources :answers, only: %i[new create]
   end
   resources :answers, only: %i[index]
+
+  resources :conversations, only: %i[index show] do
+    resources :messages, only: [:create]
+  end
+
+  resources :plants, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  get "/search", to: "plants#slug_index"
+  get "/search/:slug", to: "plants#slug_show", as: "slug_plant"
+  get "/stories", to: "plants#collection"
 end

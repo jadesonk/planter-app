@@ -1,0 +1,25 @@
+<form
+  data-action="ajax:success->listings#result"
+  data-action="ajax:error->listings#error"
+  data-target="listings.formType"
+  data-remote="true"
+  method="post"
+  action="<%= listings_filter_path %>"
+  class="ml-auto"
+>
+  <label for="select">Filter listings by type</label>
+  <section>
+    <select
+      data-action="change->listings#filterType"
+      data-target="listings.selectType"
+      name="select"
+      class="form-control shadow"
+      selected=""
+    >
+      <option selected></option>
+      <% listing_types.each do |type| %>
+        <option><%= type %></option>
+      <% end %>
+    </select>
+  </section>
+</form>

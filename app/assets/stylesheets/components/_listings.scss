@@ -8,8 +8,18 @@
   border-radius: 4px;
   max-height: 200px;
   overflow: hidden;
+  top: 0;
+  transition: top 0.1s linear;
   & img {
     width: 160px;
+  }
+  & p {
+    color: $black;
+  }
+  &:hover {
+    top: -5px;
+    text-decoration: none;
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.45) !important;
   }
 }
 
@@ -23,26 +33,9 @@
 
 .listing-card-title {
   position: relative;
-  &:before {
-    content: "";
-    position: absolute;
-    width: 50px;
-    height: 4px;
-    border-radius: 2px;
-    bottom: -0.35rem;
-    background-color: $my-green;
-    transition: ease 0.3s;
-  }
   &:hover {
-    &:before {
-      width: 100px;
-    }
     a {
       text-decoration: none;
-    }
-
-    i.fas {
-      margin-left: 0.75rem;
     }
   }
 }
@@ -71,9 +64,17 @@
   top: 0.5rem;
   padding: 0.25rem 1.5rem;
   right: 0.5rem;
-  background-color: #FA7D89;
   border-radius: 2px;
   color: white;
+  &.swap {
+    background-color: #FA7D89;
+  }
+  &.free {
+    background-color: $my-mustard;
+  }
+  &.want {
+    background-color: $blue;
+  }
 }
 
 .listings-banner {

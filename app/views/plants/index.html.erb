@@ -1,48 +1,60 @@
-<!-- Search box -->
-
-<div class="container mt-3">
-	<div class="card-search">
-		<div class="card-search-infos">
-			<div class="col">
-				<h2>Search for plants</h2>
-				<p>Your guide to the gardens of the world</p>
+<!-- Create stories -->
+<div class="container mt-5">
+	<div class="row text-center">
+		<div class="col pt-4">
+			<div class="container pt-8">
+				<h3>Share Plants and Gardening Stories</h3>
+				<p>Share plant care tips and help other planters create a beautiful garden!</p>
+				<%= link_to "Share Now", new_plant_path, class: "btn btn-primary" %>
 			</div>
 		</div>
-		<div class="container search-form-control">
-			<%= form_tag plants_path, method: :get do %>
-			<%= text_field_tag :query,
-			params[:query],
-			class: "form-control",
-			placeholder: "Enter plant name"
-			%>
-			<%= submit_tag "Search", class: "btn btn-primary" %>
-			<% end %>
-		</div>
 	</div>
 </div>
 
-<!-- Results display cards -->
-<div class="container mt-5">
+<!-- Display stories cards -->
+<div class="container mt-5 mb-3 pt-3 pb-3 pl-5 pr-5 bg-pink">
 	<div class="card-search">
 		<div class="row">
-			<% @plants.each do |plant| %>
-				<% unless plant["image_url"] == nil %>
-					<div class="col-sm-12 col-lg-4">
-						<div class="d-flex justify-content between mt-2">
-							<div class="card" id="plant-card">
-								<img src="<%= plant["image_url"] %>" id="plant-img" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title"><%= plant["common_name"] %></h5>
-									<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-									<%= link_to "Find out more", plant_path(slug: plant["slug"]) %>
+			<% @collections.each do |story| %>
+				<% @plant_id = story[:plant_id] %>
+				<% @plant_name = Plant.find_by(id: @plant_id) %>
+					<div class="col-sm-12 col-lg-4 pb-4 pt-4">
+						<div class="card" >
+							<div class="card-body">
+								<% if @plant_name.photos.first.present? %>
+									<%= cl_image_tag @plant_name.photos.first.key, height: 200, width: 200, crop: :fill %>
+								<% end %>
+									<h5 class="card-title"><%= @plant_name[:common_name] %></h5>
+								<div class="line-clamp">
+									<p class="card-text"><%= truncate(@plant_name[:description], length: 100) %></p>
+									<%= link_to "Find out more", plant_path(@plant_id) %>
 								</div>
-							</div>			
-						</div>
+							</div>
+						</div>			
 					</div>
-				<% end %>
 			<% end %>
 		</div>
 	</div>
 </div>
 
-
+<!-- Search box -->
+<div class="container mt-5 pt-5 pb-5 mb-5 border border-primary">
+	<div class="row">
+		<div class="col-sm-12 col-lg-4 text-right">
+			<h3>Search for plants</h3>
+			<p>Your guide to the gardens of the world</p>
+		</div>
+		<div class="col-sm-12 col-lg-8">
+			<div class="container search-form-control">
+				<%= form_tag search_path, method: :get do %>
+				<%= text_field_tag :query,
+				params[:query],
+				class: "form-control",
+				placeholder: "Enter plant name"
+				%>
+				<%= submit_tag "Search", class: "btn btn-primary" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

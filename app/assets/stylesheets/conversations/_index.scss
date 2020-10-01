@@ -1,0 +1,116 @@
+.notification {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 8px 16px;
+  border: 1px solid rgb(235,235,235);
+  position: relative;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.notification .notification-content {
+  flex-grow: 1;
+  padding: 0 0 0 12px;
+}
+
+.notification p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.notification small {
+  color: #999999;
+  font-weight: bold;
+}
+.notification .notification-actions {
+  opacity: 0;
+  display: flex;
+  transition: ease .3s;
+}
+
+.notification:hover .notification-actions {
+  opacity: 1;
+}
+
+.notification .notification-actions a {
+  color: #999999;
+  margin-left: 16px;
+  font-size: 14px;
+}
+
+.notification .notification-actions a:hover {
+  color: #555555;
+}
+
+.inbox-container {
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
+  height: 100%;
+  min-height: 80vh;
+}
+
+
+.messages-wrapper {
+
+}
+
+.messages-container {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  height: 75vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.message-content {
+  display: flex;
+  margin-bottom: 0.2rem;
+  & p {
+    background: lightgray;
+    padding: 0.25rem;
+    border-radius: 2px;
+    margin-bottom: 0;
+    &:last-child {
+      display: none;
+    }
+  }
+}
+
+.message-sender {
+  justify-content: flex-end;
+  & p {
+    background-color: $my-green;
+    color: $white;
+  }
+}
+
+.message-receiver {}
+
+.send-message-container {
+  display: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  & form {
+    display: flex;
+  }
+  & input#message_content {
+    width: 100%;
+  }
+  & button {
+    max-width: 100px;
+  }
+  &.active {
+    display: block;
+  }
+}
+
+.your-listing-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.05rem 0.5rem;
+  background: $my-green;
+  color: $white;
+  font-size: 12px;
+}

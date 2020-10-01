@@ -7,18 +7,7 @@
   action="<%= listings_filter_path %>"
   class="ml-auto"
 >
-
   <label for="select">Filter listings by tags</label>
-<!--   <section>
-    <input
-      data-action="keyup->listings#search"
-      data-target="listings.query"
-      type="text"
-      name="query"
-      value=""
-      placeholder="Search" />
-  </section> -->
-
   <section>
     <select
       data-action="change->listings#filter"
@@ -33,5 +22,4 @@
       <% end %>
     </select>
   </section>
-
 </form>

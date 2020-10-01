@@ -1,0 +1,28 @@
+<div class="container mt-5 mb-5">
+	<div class="container">
+		<% if @plant_id_array == [] %>
+		<div class="row">
+			<p>You have not shared any stories.</p>
+			<%= link_to "Create one now", new_plant_path, class: "link" %>
+		<% else %>
+		<div class="row">
+			<% @plant_id_array.each do |plant| %>
+				<% @plant = Plant.find(plant) %>
+					<div class="col-sm-12 col-lg-12">
+						<div class="list-group">
+							<a href="/plants/<%= plant %>" class="list-group-item list-group-item-action">
+								<div class="d-flex justify-content-between">
+									<h5 class="mb-1"><%= @plant[:common_name] %></h5>
+										<small><%= @plant[:created_at] %></small>
+								</div>
+								<p class="mb-1"><%= @plant[:description] %></p>
+								<small>reserve for user_name.</small>
+							</a>
+						</div>
+					</div>
+			<% end %>
+		</div>
+		<% end %>
+	</div>
+</div>
+
