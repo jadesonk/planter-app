@@ -12,9 +12,9 @@ class MessagesController < ApplicationController
     @message.conversation = @conversation
     authorize @message
     if @message.save
-      redirect_to conversation_path(@conversation)
+      render json: { success: true, message: @message.content }
     else
-      render 'listings/show'
+      render json: { success: false, errors: message.errors.messages }, status: :unprocessable_entity
     end
   end
 
