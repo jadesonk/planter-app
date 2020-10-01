@@ -5,7 +5,27 @@ import { fetchWithToken } from "../utils/fetch_with_token";
 export default class extends Controller {
   static targets = ['display', 'form', 'header', 'message', 'input'];
 
-  connect() {}
+  connect() {
+    console.log(window.location);
+    if (window.location.hash !== "") {
+      const id = window.location.hash.replace("#", '')
+      const url = `/conversations/${id}`
+      this.inputTarget.classList.add('active');
+      this.displayTarget.innerHTML = ""
+      fetch(url, { headers: { accept: "application/json" } })
+        .then(response => response.json())
+        .then((data) => {
+          console.log(data);
+          const currentUser = data.current_user.id;
+          this.headerTarget.dataset.conversationId = data.conversation.id;
+          data.messages.forEach((message) => {
+            const isCurrentUser = message.user_id === currentUser;
+
+            this.displayTarget.insertAdjacentHTML('afterbegin', this.createMessage(message.content, isCurrentUser))
+          })
+        })
+    }
+  }
 
   select(e) {
     e.preventDefault();
