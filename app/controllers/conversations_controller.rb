@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
     @receiving_conversations = policy_scope(current_user.receiving_conversations)
     @all_conversations = @sending_conversations + @receiving_conversations
 
-    @messages = @all_conversations.first.messages
+    # @messages = @all_conversations.first.messages
   end
 
   def show
