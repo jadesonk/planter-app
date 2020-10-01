@@ -4,6 +4,7 @@
   background: white;
   padding: 8px 16px;
   border: 1px solid rgb(235,235,235);
+  position: relative;
   &:hover {
     text-decoration: none;
   }
@@ -43,17 +44,37 @@
   color: #555555;
 }
 
+.inbox-container {
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
+  height: 100%;
+  min-height: 85vh;
+}
+
+
+.messages-wrapper {
+
+}
+
 .messages-container {
-  padding: 1rem;
+  padding: 0 1rem;
+  margin-top: 1rem;
+  height: 85vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .message-content {
   display: flex;
+  margin-bottom: 0.2rem;
   & p {
     background: lightgray;
     padding: 0.25rem;
     border-radius: 2px;
     margin-bottom: 0;
+    &:last-child {
+      display: none;
+    }
   }
 }
 
@@ -61,7 +82,35 @@
   justify-content: flex-end;
   & p {
     background-color: $my-green;
+    color: $white;
   }
 }
 
 .message-receiver {}
+
+.send-message-container {
+  display: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  & form {
+    display: flex;
+  }
+  & input#message_content {
+    width: 100%;
+  }
+  & button {
+    max-width: 100px;
+  }
+  &.active {
+    display: block;
+  }
+}
+
+.your-listing-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.05rem 0.5rem;
+  background: $my-green;
+  color: $white;
+  font-size: 12px;
+}
