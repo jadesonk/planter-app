@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-planter px-0 py-3">
+<div class="navbar navbar-expand-sm navbar-light navbar-planter px-3 py-3">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%#= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
       <i class="fas fa-seedling"></i>
@@ -13,17 +13,17 @@
   <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to 'Plants', plants_path, class: "nav-link" %>
+        <%= link_to 'Listings', listings_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to 'Listings', listings_path, class: "nav-link" %>
+        <%= link_to 'Plants', plants_path, class: "nav-link" %>
       </li>
     </ul>
     <ul class="navbar-nav mr-3">
        <% if user_signed_in? %>
-        <!-- <li class="nav-item mr-2"> -->
-          <%#= link_to "Messages", "#", class: "nav-link" %>
-        <!-- </li> -->
+         <li class="nav-item mr-2">
+          <%= link_to "Messages", conversations_path, class: "nav-link" %>
+        </li>
         <li class="nav-item dropdown align-self-center">
           <%#= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div id="navbarDropdown" class="dropdown-toggle user-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

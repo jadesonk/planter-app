@@ -10,7 +10,7 @@ require 'open-uri'
 require 'nokogiri'
 
 require_relative 'seed_data'
-require "pry-byebug"
+# require "pry-byebug"
 
 puts "START SEED"
 
@@ -59,7 +59,7 @@ html_doc.search('.geodir-category-list-view > li').each do |element|
     description: description,
     listing_type: (0..2).to_a.sample,
     status: 0,
-    expiry_date: Date.today - 10 + (8..45).to_a.sample
+    expiry_date: Date.today + (8..45).to_a.sample
   }
 
   new_listing = Listing.new(listing_attr)
@@ -73,7 +73,7 @@ html_doc.search('.geodir-category-list-view > li').each do |element|
     end
   end
 
-  scrape and upload imgs to cloudinary for each listing
+  # scrape and upload imgs to cloudinary for each listing
   puts "Add images to listing"
   img_url = "https://www.gardeneur.com/?category=all&transaction_type=all&view=list"
   img_doc = Nokogiri::HTML(open(img_url).read)
@@ -98,6 +98,7 @@ html_doc.search('.geodir-category-list-view > li').each do |element|
   puts "assigning [#{random_user.email}] to listing - #{title}"
   # assign user to new listing
   new_listing.user = random_user
+
   new_listing.save
 end
 
@@ -116,7 +117,7 @@ SeedData.get_plant.each do |story|
     water: story[:water],
     max_height: story[:max_height]
   }
-  
+
   new_plant_story = Plant.new(plant_attr)
 
   #scrape and upload imgs to cloudinary for each plant story
@@ -141,7 +142,7 @@ SeedData.get_plant.each do |story|
   end
 
   puts "Create new collections"
-  
+
   plant_user = User.find_by(email: "jade@test.com")
   @collection = Collection.new(user: plant_user)
   # save story to a random user
