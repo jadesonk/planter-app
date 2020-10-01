@@ -7,3 +7,15 @@ footer p {
   font-size: 24px;
   margin-bottom: 0;
 }
+
+footer .list-inline {
+  display: flex;
+  color: $white;
+  justify-content: center;
+}
+
+footer a {
+  color: $white;
+  font-size: 32px;
+  margin: 0 1rem;
+}

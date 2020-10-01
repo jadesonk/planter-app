@@ -12,7 +12,12 @@ class MessagesController < ApplicationController
     @message.conversation = @conversation
     authorize @message
     if @message.save
-      render json: { success: true, message: @message.content }
+      respond_to do |format|
+        format.html { redirect_to conversations_path(anchor: @conversation.id) }
+        format.json {
+          render json: { success: true, message: @message.content }
+        }
+      end
     else
       render json: { success: false, errors: message.errors.messages }, status: :unprocessable_entity
     end

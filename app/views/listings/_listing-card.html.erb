@@ -1,4 +1,4 @@
-<div class="listing-card shadow">
+<%= link_to listing_path(listing), class: 'listing-card shadow' do %>
   <% if listing.photos.first.present? %>
     <%= cl_image_tag listing.photos.first.key, height: 200, width: 200, crop: :fill %>
   <% else %>
@@ -6,12 +6,12 @@
   <% end %>
   <div class="listing-card-body">
     <h4 class="listing-card-title">
-      <%= link_to listing_path(listing) do %>
-        <%= listing.title %><i class="fas fa-angle-right"></i>
-      <% end %>
+      <%#= link_to listing_path(listing) do %>
+      <%= listing.title %>
+      <%# end %>
     </h4>
     <p class="listing-card-text"><%= listing.description %></p>
-    <span class="listing-card-type"><%= listing.listing_type %></span>
+    <span class="listing-card-type <%= listing.listing_type %>"><%= listing.listing_type %></span>
     <ul class="list-unstyled listing-card-tags d-flex align-items-center">
       <% if listing.tags.present? %>
         <h6><span class="badge badge-info p-1 mr-2 font-weight-normal">tags: </span></h6>
@@ -25,4 +25,4 @@
       <% end %>
     </ul>
   </div><!-- /.listing-card-body -->
-</div><!-- /.listing-card -->
+<% end %>

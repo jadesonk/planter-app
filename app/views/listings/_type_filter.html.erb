@@ -1,24 +1,24 @@
 <form
   data-action="ajax:success->listings#result"
   data-action="ajax:error->listings#error"
-  data-target="listings.form"
+  data-target="listings.formType"
   data-remote="true"
   method="post"
   action="<%= listings_filter_path %>"
   class="ml-auto"
 >
-  <label for="select">Filter listings by tags</label>
+  <label for="select">Filter listings by type</label>
   <section>
     <select
-      data-action="change->listings#filter"
-      data-target="listings.select"
+      data-action="change->listings#filterType"
+      data-target="listings.selectType"
       name="select"
       class="form-control shadow"
       selected=""
     >
       <option selected></option>
-      <% tags.each do |tag| %>
-        <option><%= tag.name %></option>
+      <% listing_types.each do |type| %>
+        <option><%= type %></option>
       <% end %>
     </select>
   </section>
