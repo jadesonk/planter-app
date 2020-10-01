@@ -8,8 +8,18 @@
   border-radius: 4px;
   max-height: 200px;
   overflow: hidden;
+  top: 0;
+  transition: top 0.1s linear;
   & img {
     width: 160px;
+  }
+  & p {
+    color: $black;
+  }
+  &:hover {
+    top: -5px;
+    text-decoration: none;
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.45) !important;
   }
 }
 
