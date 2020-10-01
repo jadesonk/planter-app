@@ -6,45 +6,35 @@ export default class extends Controller {
   static targets = ['display', 'form', 'header', 'message', 'input'];
 
   connect() {
-    console.log(window.location);
+    this.refreshChat();
+    setInterval(this.refreshChat, 5000);
+  }
+
+  refreshChat = () => {
     if (window.location.hash !== "") {
       const id = window.location.hash.replace("#", '')
       const url = `/conversations/${id}`
       this.inputTarget.classList.add('active');
-      this.displayTarget.innerHTML = ""
-      fetch(url, { headers: { accept: "application/json" } })
-        .then(response => response.json())
-        .then((data) => {
-          console.log(data);
-          const currentUser = data.current_user.id;
-          this.headerTarget.dataset.conversationId = data.conversation.id;
-          data.messages.forEach((message) => {
-            const isCurrentUser = message.user_id === currentUser;
-
-            this.displayTarget.insertAdjacentHTML('afterbegin', this.createMessage(message.content, isCurrentUser))
-          })
-        })
+      this.fetchChat(url);
     }
   }
 
-  select(e) {
-    e.preventDefault();
-    const tab = e.currentTarget;
-    const url = tab.getAttribute("href");
-    this.inputTarget.classList.add('active');
-    this.displayTarget.innerHTML = ""
+  fetchChat = (url) => {
     fetch(url, { headers: { accept: "application/json" } })
       .then(response => response.json())
       .then((data) => {
-        console.log(data);
-        const currentUser = data.current_user.id;
         this.headerTarget.dataset.conversationId = data.conversation.id;
-        data.messages.forEach((message) => {
-          const isCurrentUser = message.user_id === currentUser;
-
-          this.displayTarget.insertAdjacentHTML('afterbegin', this.createMessage(message.content, isCurrentUser))
-        })
+        this.displayTarget.innerHTML = ""
+        this.renderChat(data);
       })
+  }
+
+  renderChat = (data) => {
+    const currentUser = data.current_user.id;
+    data.messages.forEach((message) => {
+      const isCurrentUser = message.user_id === currentUser;
+      this.displayTarget.insertAdjacentHTML('afterbegin', this.createMessage(message.content, isCurrentUser))
+    })
   }
 
   createMessage(message, isCurrentUser) {
@@ -55,6 +45,15 @@ export default class extends Controller {
       </li>
     `
     return messageHTML;
+  }
+
+  select(e) {
+    e.preventDefault();
+    const tab = e.currentTarget;
+    const url = tab.getAttribute("href");
+    this.inputTarget.classList.add('active');
+    window.location.hash = tab.href.slice(-1);
+    this.fetchChat(url);
   }
 
   submit(e) {
