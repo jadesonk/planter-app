@@ -10,7 +10,7 @@ require 'open-uri'
 require 'nokogiri'
 
 require_relative 'seed_data'
-require "pry-byebug"
+# require "pry-byebug"
 
 puts "START SEED"
 
