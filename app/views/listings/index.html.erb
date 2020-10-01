@@ -14,6 +14,9 @@
     <div class="col-12 col-lg-11 px-4">
       <div class="listings-header-container mb-5 pb-3">
         <h1 class="mb-0" data-target="listings.header">All listings</h1>
+        <!-- <div class="listings-filter"> -->
+          <%#= render partial: 'type_filter', locals: { listing_types: @listing_types } %>
+        <!-- </div> -->
         <div class="listings-filter">
           <%= render partial: 'tag_filter', locals: { tags: @tags } %>
         </div><!-- /.listing-filter .mb-4 -->

@@ -3,6 +3,7 @@ class ListingsController < ApplicationController
 
   def index
     @tags = Tag.all
+    @listing_types = [ 'swap', 'want', 'free' ]
   end
 
   def show
