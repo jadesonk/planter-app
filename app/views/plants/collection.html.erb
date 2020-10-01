@@ -1,32 +1,32 @@
 <div class="container mt-5 mb-5">
-	<div class="container">
-		<% if @plant_id_array == [] %>
-		<div class="row">
-			<p>You have not shared any stories.</p>
-			<%= link_to "Create one now", new_plant_path, class: "link" %>
-		<% else %>
-		<div class="row">
-			<div class="div">
-					<h2>Your Plant Stories</h2>
-			</div>
-			<div class="div">
-				<% @plant_id_array.each do |plant| %>
-					<% @plant = Plant.find(plant) %>
-						<div class="col-sm-12 col-lg-12">
-							<div class="list-group">
-								<a href="/plants/<%= plant %>" class="list-group-item list-group-item-action">
-									<div class="d-flex justify-content-between">
-										<h5 class="mb-1"><%= @plant[:common_name] %></h5>
-											<small><%= @plant[:created_at] %></small>
-									</div>
-									<p class="mb-1"><%= truncate(@plant[:description], length: 200) %></p>
-								</a>
-							</div>
-						</div>
-				<% end %>
-			</div>
-		</div>
-		<% end %>
-	</div>
+  <div class="container">
+    <% if @plant_id_array == [] %>
+      <div class="row">
+        <p>You have not shared any stories.</p>
+        <%= link_to "Create one now", new_plant_path, class: "link" %>
+      </div>
+    <% else %>
+      <div class="row">
+        <div class="div">
+            <h2>Your Plant Stories</h2>
+        </div>
+        <div class="div">
+          <% @plant_id_array.each do |plant| %>
+            <% @plant = Plant.find(plant) %>
+              <div class="col-sm-12 col-lg-12">
+                <div class="list-group">
+                  <a href="/plants/<%= plant %>" class="list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between">
+                      <h5 class="mb-1"><%= @plant[:common_name] %></h5>
+                        <small><%= @plant[:created_at] %></small>
+                    </div>
+                    <p class="mb-1"><%= truncate(@plant[:description], length: 200) %></p>
+                  </a>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
