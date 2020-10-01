@@ -1,4 +1,29 @@
-<div class="container">
-<p>this is slug_index page</p>
-<%= @plants %>
+<!-- Results display cards -->
+<div class="container mt-5">
+	<div class="row">
+	
+
+	</div>
+</div>
+<div class="container mt-5">
+	<div class="card-search">
+		<div class="row">
+			<% @plants.each do |plant| %>
+				<% unless plant["image_url"] == nil %>
+					<div class="col-sm-12 col-lg-4">
+						<div class="d-flex justify-content between mt-2">
+							<div class="card" id="plant-card">
+								<img src="<%= plant["image_url"] %>" id="plant-img" class="card-img-top" alt="...">
+								<div class="card-body">
+									<h5 class="card-title"><%= plant["common_name"] %></h5>
+									<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+									<%= link_to "Find out more", slug_plant_path(slug: plant["slug"]) %>
+								</div>
+							</div>			
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
 </div>
