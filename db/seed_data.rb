@@ -30,7 +30,65 @@ class SeedData
     'https://res.cloudinary.com/dbwwrdzej/image/upload/v1592896962/planter/thumbnail-uploads/sample.jpg'
   ]
 
+
+  @plant_story = [
+    {common_name: "Snake Plant",
+    description: "Don't let the name fool (or more likely, scare the crap out of) you. Marino explains that the snake plant simply gets its name from the thin, upright leaves with irregular green banding that look like—you guessed it—snakeskin. 
+    Besides looking cool, it's a low-maintenance plant that's known for surviving droughts, making it perfect for newbies living in almost any environment. Although the snake plant prefers bright light, it can survive lower light levels, she adds. 
+    Snake plants have also been shown to filter out nasty chemicals, like benzene, formaldehyde, trichloroethylene, xylene, and toluene, so you can breathe easy having this in your home. Pet friendly? No."
+    },
+    {common_name: "Monstera Deliciosa",
+    description: "These trendy plants are one of Horton's faves not just because their eye-catching look is oh-so-'grammable, but because once you get them going, they're easy growing. Especially during the warmer season, expect to see a new leaf weekly. 
+    Plus, you can easily propagate them (a.k.a. split off a leaf with a node and give it to a friend to grow their own). Best part: You only need to water a monstera deliciosa every one to two weeks, letting the soil dry out between waterings, per The Sill. 
+    Plus, it's perfect if your place doesn't get direct sunlight—all it needs is a spot that receives bright to medium indirect light.
+    In general, large-leafed philodendron plants, including the monstera deliciosa, were shown to be one of the most effective at reducing air pollutants, like benzene, trichloroethylene, and formaldehyde, according to a NASA study. 
+    Pet friendly? No. ",
+    sun: "Full sun",
+    water: "Every 2 weeks. Check for soil dryness",
+    max_height: 150,
+    },
+    {common_name: "Pothos",
+    description: "Sometimes referred to as the 'cubicle plant,' the pothos is a great pick if you're a self-proclaimed 'black thumb,' says Marino. (Just so you know, a 'black thumb' is the total opposite of a 'green thumb.') 
+    And while this plant starts out small, its trailing vines can grow to over 10 feet long (WOW), even indoors where lower light and dry air make conditions less than ideal. 
+    As an added bonus, this plant is super easy to grow, adds Marino, and propagates (translation: breeds more pothos) in water. While you'll need to learn how to propagate a Pothos plant, you can basically get as many plants as you want for the price of one. And like the snake plant, the pothos filters benzene, formaldehyde, xylene, and toluene.
+    Pet friendly? No. ",
+    sun: "Full sun",
+    water: "Every 2 weeks. Check for soil dryness",
+    max_height: 100,
+    },
+    {common_name: "Dracaena",
+    description: "If you live a high-maintenance life—always on the go, out at all hours—you need an easy going, low-maintenance plant, like the Dracaena, says Juliette Vassilkioti, co-founder and president of My City Plants. 
+    The Dracaena is great, she explains, because it can easily adapt to different light environments, though it's best to keep it away from direct sun. The hardiest of of these group is Draacena Lisa, she explains. It can deal with indoor temperature and season changes better than others. When it comes to purifying the air, though, the Dracaena Marginata Plant is your best bet. It removes benzene, formaldehyde, trichloroethylene, and xylene. 
+    Pet friendly? No.",
+    sun: "Full sun",
+    water: "Every 2 weeks. Check for soil dryness",
+    max_height: 100,
+    },
+    {common_name: "ZZ Plant",
+    description: "If you live in a lower light environment, Marino and Horton suggest getting a ZZ Plant because they're drought tolerant and incredibly low maintenance. You might notice the ZZ has large potato-like rhizomes (a.k.a. horizontal stems that continuously grow) under the surface of its surrounding potting mix.
+    These rhizomes, Horton explains, are hearty, storing water that helps the plant survive drought in its natural environment. She recommends watering it once a month during the growing season (spring and summer) and once every two months when it goes dormant in the fall. It's a great plant to have if you're somebody who happens to travel a lot, Horton adds. 
+    Oh, and Marino notes that many cultures believe a ZZ Plant symbolizes prosperity and friendship, making it a great housewarming gift. 
+    Pet friendly? No.",
+    sun: "Filtered sun",
+    water: "Every 2 weeks. Check for soil dryness",
+    max_height: 100,
+    },
+    {common_name: "Spider Plant",
+    description: "Plants that give off instant jungle vibes, like the spider plant, are having a serious moment right now, according to Marino. And they're super easy to care for, says Vassilkioti. These plants need bright light, but no direct sun, so they're perfect to put in a room with big windows. Just keep it away from the windowsill.  
+    Vassilkioti adds that this plant is fun to have around because it grows baby spiders (spiderettes), which can be easily propagated. It's also a strong air purifier, removing both formaldehyde and xylene.
+    Pet friendly? YES!",
+    sun: "Full sun",
+    water: "Every 2 weeks. Check for soil dryness",
+    max_height: 100,
+    }
+  ]
+
   def self.get_img_thumbnails
     @img_thumbnails
   end
+
+  def self.get_plant
+    @plant_story
+  end
+
 end

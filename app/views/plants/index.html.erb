@@ -19,16 +19,18 @@
 				<% @plant_id = story[:plant_id] %>
 				<% @plant_name = Plant.find_by(id: @plant_id) %>
 					<div class="col-sm-12 col-lg-4 pb-4 pt-4">
-
-							<div class="card" id="plant-card">
-								<div class="card-body">
-									<img src="" alt="">
+						<div class="card" >
+							<div class="card-body">
+								<% if @plant_name.photos.first.present? %>
+									<%= cl_image_tag @plant_name.photos.first.key, height: 200, width: 200, crop: :fill %>
+								<% end %>
 									<h5 class="card-title"><%= @plant_name[:common_name] %></h5>
-									<p class="card-text"><%= @plant_name[:description] %></p>
+								<div class="line-clamp">
+									<p class="card-text"><%= truncate(@plant_name[:description], length: 100) %></p>
 									<%= link_to "Find out more", plant_path(@plant_id) %>
 								</div>
-							</div>			
-
+							</div>
+						</div>			
 					</div>
 			<% end %>
 		</div>

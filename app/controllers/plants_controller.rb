@@ -6,8 +6,7 @@ class PlantsController < ApplicationController
 	def index
 		# display collections on index page
 		@collections = Collection.all
-		@plant = Plant.all
-
+		@plants = Plant.all
 	end
 
 	def slug_index
