@@ -39,7 +39,7 @@ class ListingsController < ApplicationController
 
   def set_listings
     # policy_scope breaking filter
-    @listings = policy_scope(Listing).where('expiry_date >= ?', Date.today)
+    @listings = policy_scope(Listing).where('expiry_date >= ?', Date.today).order("created_at DESC")
   end
 
   def listing_params
